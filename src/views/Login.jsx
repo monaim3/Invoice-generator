@@ -32,7 +32,7 @@ const Login = () => {
             </div>
 
             <div className="mb-3">
-                <label for="loginpassword" className="form-label">Demo Login:demo@gmail.com <br></br> Password:demo@400500</label>
+                <label for="loginpassword" className="form-label">Email:demo@gmail.com <br></br> Password:demo@400500</label>
                
             </div>
             <button style={{width:"100%"}} className='btn btn-primary mt-2' type='submit'>Submit</button>
