@@ -4,12 +4,16 @@ import { ReactComponent as IconReceiptCutoff } from "bootstrap-icons/icons/recei
 import { ReactComponent as IconSunFill } from "bootstrap-icons/icons/sun-fill.svg";
 import { ReactComponent as IconMoonStarsFill } from "bootstrap-icons/icons/moon-stars-fill.svg";
 import { ReactComponent as IconCircleHalf } from "bootstrap-icons/icons/circle-half.svg";
+import "./Navbar.css";
+import { useAuth } from "../../views/AuthContext";
+
 export function withRouter(Children) {
   return (props) => {
     const match = { params: useParams() };
     return <Children {...props} match={match} />;
   };
 }
+
 const Navbar = () => {
   const [navLinks] = useState([
     {
@@ -24,16 +28,16 @@ const Navbar = () => {
       navigation: "/settings",
       name: "Settings",
     },
-    // {
-    //   navigation: "/logout",
-    //   name: "logout",
-    // },
   ]);
-  const navigate=useNavigate()
-const handlelogout=()=>{
-  document.cookie = `auth=${false};`;
-  navigate("/login")
-}
+  
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth(); // Use auth context
+  
+  const handleLogout = () => {
+    logout(); // Use logout from context
+    navigate("/login");
+  };
+
   const getPreferredTheme = () => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
@@ -59,11 +63,11 @@ const handlelogout=()=>{
   }, [theme]);
 
   return (
-    <nav className="navbar navbar-expand-lg shadow">
+    <nav className="navbar navbar-expand-lg enhanced-navbar">
       <div className="container">
         <Link className="navbar-brand" to="/">
           <IconReceiptCutoff className="me-2" />
-         <span >Milon Motors Invoice</span>
+          <span className="poppins-regular">Milon Motors Invoice</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -91,11 +95,11 @@ const handlelogout=()=>{
               </li>
             ))}
           </ul>
-          <hr className="d-lg-none text-white-50"></hr>
+          <hr className="d-lg-none"></hr>
           <ul className="navbar-nav flex-row flex-wrap ms-md-auto">
             <li className="nav-item dropdown">
               <button
-                className="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+                className="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center theme-dropdown-btn"
                 id="bd-theme"
                 type="button"
                 aria-expanded="false"
@@ -115,7 +119,7 @@ const handlelogout=()=>{
 
                 <span className="d-lg-none ms-2">Theme</span>
               </button>
-              <ul className="dropdown-menu dropdown-menu-end">
+              <ul className="dropdown-menu dropdown-menu-end theme-dropdown-menu custom-z-index">
                 <li onClick={() => setTheme("light")}>
                   <button
                     type="button"
@@ -150,11 +154,20 @@ const handlelogout=()=>{
                     Auto
                   </button>
                 </li>
-                
               </ul>
             </li>
           </ul>
-          <button onClick={handlelogout} type="button" class="btn btn-link">Logout</button>
+          
+          {/* Conditional rendering of Login/Logout button */}
+          {isAuthenticated ? (
+            <button onClick={handleLogout} type="button" className="btn logout-btn">
+              Logout
+            </button>
+          ) : (
+            <button onClick={() => navigate("/login")} type="button" className="btn logout-btn">
+              Login
+            </button>
+          )}
         </div>
       </div>
     </nav>

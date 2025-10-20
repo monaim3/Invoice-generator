@@ -19,10 +19,11 @@ import mercedis from './../../res/images/New folder (2)/mercedes.jpg';
 
 import lexus from './../../res/images/New folder (2)/Lexus.jpg';
 import bmw from './../../res/images/New folder (2)/BMW.jpeg';
-
+import "./generator.css"; // Import the enhanced CSS file
 import milon from './../../res/images/New folder (2)/mm.jpg';
 import visa from './../../res/images/New folder (2)/visa.jpeg';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 const InvoiceGenerator = () => {
   //const [discountValue, setDiscountValue] = useState(getSubtotal(items));
@@ -660,7 +661,7 @@ const InvoiceGenerator = () => {
                       </button>
                     </caption>
                     <thead>
-                      <tr className="d-flex">
+                      <tr className=" table-col">
                         <th className="col-md-1" scope="col">
                           #
                         </th>
@@ -685,14 +686,14 @@ const InvoiceGenerator = () => {
                         {/* <th className="col-md-1" scope="col">
                           {taxation || "GST"}
                         </th> */}
-                        <th className="col-md-4" scope="col">
+                        <th className="col-md-4 text-end" scope="col">
                           Amount ({currency || "TK"})
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {items.map((item, index) => (
-                        <tr key={index} className="d-flex">
+                        <tr key={index} className=" table-col">
                           <th className="col-md-1" scope="row">
                             {index + 1}
                             <button
@@ -737,28 +738,7 @@ const InvoiceGenerator = () => {
                               </option>
                             </select>
                           </td>
-                          {/* <td className="col-md-1">
-                            <input
-                              type="number"
-                              min="0"
-                              className="form-control form-control-sm"
-                              placeholder="Due"
-                              name="due"
-                              value={item.due}
-                              onChange={handleChange(index)}
-                            />
-                          </td> */}
-                          {/* <td className="col-md-1">
-                            <select
-                              className="form-control form-control-sm"
-                              name="paymentType"
-                              value={item.paymentType}
-                              onChange={handleChange(index)}
-                            >
-                              <option value={"payment"}>Cash</option>
-                              <option value={"due"}>Due</option>
-                            </select>
-                          </td> */}
+                 
 
                           <td className="col-md-1">
                             <input
@@ -771,21 +751,7 @@ const InvoiceGenerator = () => {
                               onChange={handleChange(index)}
                             />
                           </td>
-                          {/* <td className="col-md-2">
-                            <div className="input-group input-group-sm">
-                              <input
-                                type="number"
-                                min="0"
-                                className="form-control"
-                                name="taxationPer"
-                                value={item.taxationPer ?? 0}
-                                onChange={handleChange(index)}
-                              />
-                              <div className="input-group-text pe-1 ps-1">
-                                %
-                              </div>
-                            </div>
-                          </td> */}
+              
                           <td className="col-md-4 text-end">{getAmount(item)}</td>
                         </tr>
                       ))}
@@ -942,31 +908,7 @@ const InvoiceGenerator = () => {
             </div>
             <div className="row ">
 
-              {/* <div className="col-3 files color">
-               <input
-                          type="file"
-                          className="form-control form-control-sm"
-                          accept="image/x-png,image/jpg,image/jpeg"
-                          id="customFile"
-                          onChange={onImageChange}
-                        />
-               </div> */}
-
-              {/* <div className="col-3 files color">
-               <input style={{'borderRadius':'15px'}} type="file" name="logo1" className="form-control form-control-sm" accept="image/x-png,image/jpg,image/jpeg" id="customFile"  placeholder="" onChange={onLogoChange}/>
-               </div> */}
-              {/* <div className="col-3 files color">
-               <input style={{'borderRadius':'15px'}} type="file" multiple="multiple" className="form-control form-control-sm" accept="image/x-png,image/jpg,image/jpeg" id="customFile"  placeholder="" onChange={onLogoChange}/>
-               </div> */}
-              {/* <div className="col-3 files color">
-               <input type="file" name="logo2" className="form-control form-control-sm" accept="image/x-png,image/jpg,image/jpeg" id="customFile"  placeholder="" onChange={onLogoChange}/>
-               </div>
-               <div className="col-3 files color">
-               <input type="file" name="logo3" className="form-control form-control-sm" accept="image/x-png,image/jpg,image/jpeg" id="customFile"  placeholder="" onChange={onLogoChange}/>
-               </div>
-               <div className="col-3 files color">
-               <input type="file" name="logo4" className="form-control form-control-sm" accept="image/x-png,image/jpg,image/jpeg" id="customFile"  placeholder="" onChange={onLogoChange}/>
-               </div> */}
+  
 
             </div>
           </div>
