@@ -202,12 +202,20 @@ const InvoiceGenerator = () => {
   const addItem = () =>
     setInvoice((prev) => ({ ...prev, items: [...prev.items, blankItem] }));
 
-  const handleRemoveItem = (idx) => () => {
-    setInvoice((prev) => ({
-      ...prev,
-      items: prev.items.filter((s, i) => idx !== i),
-    }));
-  };
+  // const handleRemoveItem = (idx) => () => {
+  //   console.log("remove", idx);
+  //   setInvoice((prev) => ({
+  //     ...prev,
+  //     items: prev.items.filter((s, i) => idx !== i),
+  //   }));
+  // };
+const handleRemoveItem = (idx) => {
+  console.log("remove", idx);
+  setInvoice((prev) => ({
+    ...prev,
+    items: prev.items.filter((s, i) => idx !== i),
+  }));
+};
 
   const handleRemoveInvoice = (idx) => {
     if (window.confirm("Are you sure you wish to delete this invoice?")) {
@@ -406,7 +414,7 @@ const InvoiceGenerator = () => {
     }));
  },[items])
   return (
-    <div className="bg-light-view">
+    <div className="bg-light-views">
       <div className="row mt-3">
         <div className="col-lg-10">
           <div className="papers mb-3">
@@ -449,7 +457,7 @@ const InvoiceGenerator = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="input-group">
-                      <input
+                      {/* <input
                         type="text"
                         name="title"
                         maxLength="20"
@@ -457,7 +465,7 @@ const InvoiceGenerator = () => {
                         className="form-control"
                         value={title}
                         onChange={handleUserInput}
-                      />
+                      /> */}
                       <div className="input-group-text">Invoice No</div>
                       <div className="input-group-text">#</div>
                       <input
@@ -542,7 +550,7 @@ const InvoiceGenerator = () => {
                           <button
                             type="button"
                             title="Remove"
-                            onClick={handleRemoveItem(index)}
+                            onClick={() => handleRemoveItem(index)}
                             className="btn btn-danger btn-sm float-end"
                           >
                             <IconX />
@@ -661,7 +669,7 @@ const InvoiceGenerator = () => {
                       </button>
                     </caption>
                     <thead>
-                      <tr className=" table-col">
+                      <tr className="">
                         <th className="col-md-1" scope="col">
                           #
                         </th>
@@ -693,23 +701,30 @@ const InvoiceGenerator = () => {
                     </thead>
                     <tbody>
                       {items.map((item, index) => (
-                        <tr key={index} className=" table-col">
-                          <th className="col-md-1" scope="row">
+                        <tr key={index} className=" ">
+                          {/* <th className="col-md-1" scope="row">
                             {index + 1}
+                          </th> */}
+                          <th
+                            className="col-md-2 d-flex align-items-center justify-content-between"
+                            scope="row"
+                          >
+                            <span style={{marginTop:"10px"}}>{index + 1}</span>
                             <button
                               type="button"
                               title="Remove"
-                              onClick={handleRemoveItem(index)}
-                              className="btn btn-danger btn-sm float-end"
+                              onClick={() => handleRemoveItem(index)}
+                              className="btn btn-danger btn-sm ms-2"
                             >
                               <IconX />
                             </button>
                           </th>
+
                           <td className="col-md-3">
                             <input
                               type="text"
                               className="form-control form-control-sm"
-                              placeholder="Description of service or product..."
+                              placeholder="Name or product..."
                               name="title"
                               value={item.title}
                               onChange={handleChange(index)}

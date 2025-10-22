@@ -116,11 +116,11 @@ html[data-bs-theme="dark"] .files:after {
   margin-bottom: calc(-0.125em / 2);
 }
 
-.bg-light-view {
+/* .bg-light-view {
   background-color: #eee;
-}
+} */
 
-html[data-bs-theme="dark"] .bg-light-view {
+/* html[data-bs-theme="dark"] .bg-light-view {
   background-color: transparent;
-}
+} */
 

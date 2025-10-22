@@ -5,6 +5,9 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.min.css";
 import ActionRenderer from "./actionRenderer.jsx";
 import pdfExport from "../../common/pdfExport";
+import "./invoicelist.css"; // Import the enhanced CSS file
+
+
 
 const InvoiceList = () => {
   const history = useNavigate();
@@ -61,8 +64,6 @@ const InvoiceList = () => {
       sortable: true,
       filter: true,
       resizable: true,
-      //filter: "agTextColumnFilter",
-      // enable floating filters by default
       floatingFilter: true,
     },
     columnDefs: [
@@ -107,20 +108,14 @@ const InvoiceList = () => {
 
   const columnTypes = {
     dateColumn: {
-      // specify we want to use the date filter
       filter: "agDateColumnFilter",
-      // add extra parameters for the date filter
       filterParams: {
-        // provide comparator function
         comparator: (filterLocalDateAtMidnight, cellValue) => {
-          // In the example application, dates are stored as dd/mm/yyyy
-          // We create a Date object for comparison against the filter date
           const dateParts = cellValue.split("-");
           const year = Number(dateParts[0]);
           const month = Number(dateParts[1]) - 1;
           const day = Number(dateParts[2]);
           const cellDate = new Date(year, month, day);
-          // Now that both parameters are Date objects, we can compare
           if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
             return 0;
           }
@@ -136,30 +131,32 @@ const InvoiceList = () => {
   };
 
   return (
-    <div>
-      <div className="row mt-3">
-        <div className="col-md-12">
-          <h5>Invoices</h5>
+    <div className="invoice-list-container">
+      <div className="invoice-header">
+        <div className="header-content">
+          <h1 className="invoice-title">Invoices</h1>
+          <div className="invoice-count">
+            <span className="count-badge">{rowData.length}</span>
+            <span className="count-label">Total Invoices</span>
+          </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-12">
-          <div
-            style={{ height: "600px", width: "100%" }}
-            className={
-              theme === "dark" ? `ag-theme-alpine-dark` : `ag-theme-alpine`
-            }
-          >
-            <AgGridReact
-              rowSelection="single"
-              context={state.context}
-              columnDefs={state.columnDefs}
-              rowData={rowData}
-              defaultColDef={state.defaultColDef}
-              frameworkComponents={state.frameworkComponents}
-              columnTypes={columnTypes}
-            ></AgGridReact>
-          </div>
+      
+      <div className="invoice-grid-wrapper">
+        <div
+          className={`invoice-grid ${
+            theme === "dark" ? `ag-theme-alpine-dark` : `ag-theme-alpine`
+          }`}
+        >
+          <AgGridReact
+            rowSelection="single"
+            context={state.context}
+            columnDefs={state.columnDefs}
+            rowData={rowData}
+            defaultColDef={state.defaultColDef}
+            frameworkComponents={state.frameworkComponents}
+            columnTypes={columnTypes}
+          ></AgGridReact>
         </div>
       </div>
     </div>

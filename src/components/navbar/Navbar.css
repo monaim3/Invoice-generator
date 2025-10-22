@@ -104,6 +104,15 @@
   height: 20px;
   fill: #ffffff;
 }
+.enhanced-navbar {
+  position: relative;
+  z-index: 1000;
+}
+
+.theme-dropdown-menu {
+  position: absolute !important;
+  z-index: 99999 !important;
+}
 
 /* Theme Dropdown Menu */
 .theme-dropdown-menu {

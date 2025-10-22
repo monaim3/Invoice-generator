@@ -1,0 +1,422 @@
+/* Settings Container */
+.row.mt-3 {
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf3 100%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Main Card */
+.row.mt-3 .card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: none;
+  overflow: hidden;
+}
+
+/* Card Header with Tabs */
+.row.mt-3 .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0.5rem 1.5rem 0;
+  border: none;
+}
+
+/* Navigation Tabs */
+.card-header .nav-tabs {
+  border-bottom: none;
+  gap: 0.5rem;
+}
+
+.card-header .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  background: transparent;
+  padding: 1rem 1.5rem;
+  border-radius: 12px 12px 0 0;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card-header .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.card-header .nav-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.card-header .nav-link.active {
+  color: #667eea;
+  background: #ffffff;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Body */
+.card-body {
+  padding: 2rem;
+}
+
+/* Form Controls */
+/* .form-control,
+.form-select {
+  border: 2px solid rgba(102, 126, 234, 0.15);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+.form-control-sm {
+  padding: 0.75rem;
+  border: 2px dashed rgba(102, 126, 234, 0.3);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.form-control-sm:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+} */
+
+/* Input Groups */
+.input-group {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.15);
+}
+
+.input-group .input-group-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+}
+
+.input-group .form-control,
+.input-group .form-select {
+  border: none;
+  box-shadow: none;
+}
+
+.input-group .form-control:focus,
+.input-group .form-select:focus {
+  box-shadow: none;
+  background: rgba(102, 126, 234, 0.05);
+  border: none;
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Form Labels */
+label {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Preview Image */
+.preview-image {
+  max-width: 150px;
+  max-height: 100px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e8ecf3;
+}
+
+.preview-image-remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: 2px solid white;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image-remove:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+/* 
+.form-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.form-text b {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.form-text .list-inline {
+  margin-bottom: 0;
+}
+
+.form-text .list-inline-item {
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* Checkboxes and Switches */
+/* .form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-check-input:checked {
+  background-color: #667eea;
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.form-check-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.form-check-label {
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+  margin-left: 0.5rem;
+} */
+
+/* Form Switch */
+/* .form-switch .form-check-input {
+  width: 2.5rem;
+  height: 1.25rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255,255,255,1%29'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+  background-color: #667eea;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255,255,255,1%29'/%3e%3c/svg%3e");
+}  */
+
+/* Inner Cards (Watermark, QR Code) */
+.card-body .card {
+  border: 2px solid #e8ecf3;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.card-body .card:hover {
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+}
+
+.card-body .card-header {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #e8ecf3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.card-body .card-body {
+  padding: 1.5rem;
+}
+
+.card-body .h5,
+.card-body .h6 {
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Color Picker Container */
+.card-text {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Template Cards */
+.tab-pane .card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid #e8ecf3;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-pane .card:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+}
+
+.tab-pane .card:has(.form-check-input:checked) {
+  border-color: #667eea;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.tab-pane .card:has(.form-check-input:checked)::after {
+  content: '✓';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  animation: checkmarkPop 0.3s ease;
+}
+
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.tab-pane .card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.tab-pane .card-body {
+  background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+  padding: 1rem;
+}
+
+.tab-pane .card:has(.form-check-input:checked) .card-body {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+.tab-pane .card:has(.form-check-input:checked) .form-check-label {
+  color: #667eea;
+  font-weight: 700;
+}
+
+/* Links */
+a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Row Spacing */
+.row.g-3 {
+  gap: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .row.mt-3 {
+    padding: 1rem;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .card-header .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .input-group .input-group-text {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Smooth Animations */
+* {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+}

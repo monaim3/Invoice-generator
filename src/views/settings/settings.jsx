@@ -7,6 +7,7 @@ import temp4 from "../../res/images/invoice/Template 4.jpg";
 import temp5 from "../../res/images/invoice/Template 5.jpg";
 import temp6 from "../../res/images/invoice/Template 6.jpg";
 
+
 const Settings = () => {
   // PDF Setting (docDefinition)
   const [docDefinition] = useState(

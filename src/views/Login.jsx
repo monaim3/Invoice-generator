@@ -17,16 +17,23 @@ const Login = () => {
   const getEmail = process.env.REACT_APP_EMAIL;
   const getPass = process.env.REACT_APP_Password;
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (getEmail === email && getPass === password) {
-      login(); // Use login from context
-      navigate('/');
-      toast.success('Login Successful!', { position: 'top-right' });
-    } else {
-      toast.error('Wrong Email or Password!', { position: 'top-right' });
-    }
-  };
+ const handleLogin = (e) => {
+  e.preventDefault();
+  if (getEmail === email && getPass === password) {
+    login(); // Use login from context
+    navigate('/');
+    toast.success('Login Successful!', {
+      position: 'top-right',
+      style: { color: '#fff' }  
+    });
+  } else {
+    toast.error('Wrong Email or Password!', {
+      position: 'top-right',
+      style: { color: '#fff' } 
+    });
+  }
+};
+
 
   const copyToClipboard = (text, type) => {
     navigator.clipboard.writeText(text);

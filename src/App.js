@@ -19,7 +19,7 @@ function App() {
       <AuthProvider>
         <React.Fragment>
           <Navbar />
-          <div className="container-fluid">
+          <div className="container">
             <Suspense fallback={<div>Loading...</div>}>
               <Routes>
                 <Route 

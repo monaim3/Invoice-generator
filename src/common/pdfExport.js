@@ -508,32 +508,32 @@ class pdfExport {
                   color:"#3f81c3",
                 },
                 "\n",
-                {
-                  text: "milonmotors@gmail.com milonmotors@yahoo.com",
-                  alignment: "center",
-                  fontSize: 12,
-                  italics:true,
+                // {
+                //   text: "milonmotors@gmail.com milonmotors@yahoo.com",
+                //   alignment: "center",
+                //   fontSize: 12,
+                //   italics:true,
                   
-                },
-                "\n",
-                {
-                  text: "01799446060  01977225577",
-                  alignment: "center",
-                  fontSize: 15,
-                  margin: [0, 10, 0, 10],
-                  color:"black"
-                },
+                // },
+                // "\n",
+                // {
+                //   text: "01799446060  01977225577",
+                //   alignment: "center",
+                //   fontSize: 15,
+                //   margin: [0, 10, 0, 10],
+                //   color:"black"
+                // },
               ],
             },
             {
               width: "auto",
               columns: [
-                  {
-                      image: obj.brandLogo.visa,
-                      width: 70,
-                      height: 30,
-                      margin: [0, 10, 0, 0],
-                  },
+                  // {
+                  //     image: obj.brandLogo.visa,
+                  //     width: 70,
+                  //     height: 30,
+                  //     margin: [0, 10, 0, 0],
+                  // },
                   {
                     text: [
                       {
