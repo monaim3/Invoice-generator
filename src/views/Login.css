@@ -108,6 +108,7 @@
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  color: #000;
   background-color: #fff;
 }
 
@@ -153,7 +154,7 @@
   background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
   border: 2px solid #fbbf24;
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 8px 5px;
   margin-bottom: 1.5rem;
 }
 
