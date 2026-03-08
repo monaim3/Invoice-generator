@@ -150,7 +150,6 @@ class pdfExport {
     if (obj.items.length === 0) itemBody.push(itemArr);
     for (let index = 0; index < obj.items.length; index++) {
       const element = obj.items[index];
-      console.log(element);
       itemBody.push([
         index + 1,
         element.title,
@@ -455,7 +454,7 @@ class pdfExport {
               width: "auto",
               columns: [
                   {
-                    image: obj.brandLogo.milon,
+                    image: obj.imgSrc ? obj.imgSrc : obj.brandLogo.milon,
                       width: 60,
                       height: 40,
                   },

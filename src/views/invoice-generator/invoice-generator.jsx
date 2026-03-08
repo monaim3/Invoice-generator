@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
 import { ReactComponent as IconDownload } from "bootstrap-icons/icons/download.svg";
 import { ReactComponent as IconFilePdf } from "bootstrap-icons/icons/file-pdf.svg";
@@ -34,6 +36,61 @@ const InvoiceGenerator = () => {
 
   const randomNumber = (min, max) =>
     Math.floor(Math.random() * (max - min) + min);
+
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [templates, setTemplates] = useState(
+    localStorage.getItem("invoiceTemplates")
+      ? JSON.parse(localStorage.getItem("invoiceTemplates"))
+      : []
+  );
+  const [templateName, setTemplateName] = useState("");
+
+  const saveAsTemplate = () => {
+    const name = templateName.trim() || `Template ${templates.length + 1}`;
+    const template = {
+      id: Date.now(),
+      name,
+      invoiceFrom: invoice.invoiceFrom,
+      invoiceTo: invoice.invoiceTo,
+      items: invoice.items,
+      discounts: invoice.discounts,
+      shipping: invoice.shipping,
+      terms: invoice.terms,
+      footNote: invoice.footNote,
+      currency: invoice.currency,
+      taxation: invoice.taxation,
+    };
+    const updated = [template, ...templates];
+    setTemplates(updated);
+    localStorage.setItem("invoiceTemplates", JSON.stringify(updated));
+    setTemplateName("");
+    toast.success(`Template "${name}" saved!`);
+  };
+
+  const loadTemplate = (id) => {
+    const tpl = templates.find((t) => t.id === Number(id));
+    if (!tpl) return;
+    setInvoice((prev) => ({
+      ...prev,
+      invoiceFrom: tpl.invoiceFrom,
+      invoiceTo: tpl.invoiceTo,
+      items: tpl.items,
+      discounts: tpl.discounts,
+      shipping: tpl.shipping,
+      terms: tpl.terms,
+      footNote: tpl.footNote,
+      currency: tpl.currency,
+      taxation: tpl.taxation,
+    }));
+    toast.success(`Template "${tpl.name}" loaded!`);
+  };
+
+  const deleteTemplate = (id) => {
+    const updated = templates.filter((t) => t.id !== id);
+    setTemplates(updated);
+    localStorage.setItem("invoiceTemplates", JSON.stringify(updated));
+    toast.info("Template deleted.");
+  };
 
   const [defaultSettings] = useState(
     localStorage.getItem("defaultSettings")
@@ -121,6 +178,7 @@ const InvoiceGenerator = () => {
     taxation: defaultSettings?.taxation ?? "GST",
     footerLogos: blanFooterLogos,
     brandLogo: brandFooterLogos,
+    paymentStatus: "unpaid",
   });
 
   const dueTotal=(items)=>
@@ -144,7 +202,7 @@ const InvoiceGenerator = () => {
   const getAmount = (item) => {
     const { quantity, rate, taxationPer } = item;
     let totalAmount = quantity * rate;
-    let taxAmount = totalAmount * (taxationPer ?? 0 / 100);
+    let taxAmount = totalAmount * ((taxationPer ?? 0) / 100);
     let grossAmount = (Number(totalAmount) + Number(taxAmount)).toFixed(2);
     item.amount = grossAmount;
     return grossAmount;
@@ -210,7 +268,6 @@ const InvoiceGenerator = () => {
   //   }));
   // };
 const handleRemoveItem = (idx) => {
-  console.log("remove", idx);
   setInvoice((prev) => ({
     ...prev,
     items: prev.items.filter((s, i) => idx !== i),
@@ -262,11 +319,26 @@ const handleRemoveItem = (idx) => {
       footNote: defaultSettings?.footNote ?? "",
       currency: defaultSettings?.defaultCurrency ?? "",
       taxation: defaultSettings?.taxation ?? "GST",
+      paymentStatus: "unpaid",
     }));
   };
-  console.log(invoice.invoiceNo)
+  const validateInvoice = () => {
+    if (!invoice.invoiceTo || invoice.invoiceTo.trim() === "") {
+      toast.error("Invoice To field is required!");
+      return false;
+    }
+    const validItems = invoice.items.filter(
+      (item) => item.title.trim() !== "" && Number(item.quantity) > 0
+    );
+    if (validItems.length === 0) {
+      toast.error("At least one item with a name and quantity > 0 is required!");
+      return false;
+    }
+    return true;
+  };
+
   const saveInvoice = () => {
-    
+    if (!validateInvoice()) return;
 
     let currentUuid = invoice.uuid;
     let findObject = invoices.find((s, i) => s.uuid === currentUuid);
@@ -365,17 +437,27 @@ const handleRemoveItem = (idx) => {
     return false;
   };
   const downloadInvoice = (obj) => {
-  
-    pdfExport.downloadInvoice(obj);
+    setPdfLoading(true);
+    setTimeout(() => {
+      pdfExport.downloadInvoice(obj);
+      setPdfLoading(false);
+    }, 100);
   };
 
   const openInvoice = (obj) => {
- 
-    pdfExport.openInvoice(obj);
+    setPdfLoading(true);
+    setTimeout(() => {
+      pdfExport.openInvoice(obj);
+      setPdfLoading(false);
+    }, 100);
   };
 
   const printInvoice = (obj) => {
-    pdfExport.printInvoice(obj);
+    setPdfLoading(true);
+    setTimeout(() => {
+      pdfExport.printInvoice(obj);
+      setPdfLoading(false);
+    }, 100);
   };
 
   useEffect(() => {
@@ -407,14 +489,9 @@ const handleRemoveItem = (idx) => {
     currency,
     taxation,
   } = invoice;
- useEffect(()=>{
-    setInvoice((prev) => ({
-      ...prev,
-      discounts:getSubtotal(items)
-    }));
- },[items])
   return (
     <div className="bg-light-views">
+      <ToastContainer autoClose={2500} />
       <div className="row mt-3">
         <div className="col-lg-10">
           <div className="papers mb-3">
@@ -535,6 +612,20 @@ const handleRemoveItem = (idx) => {
                     value={invoiceTo}
                     onChange={(event) => handleUserInput(event)}
                   ></textarea>
+                </div>
+                <div className="form-group mt-2">
+                  <label htmlFor="paymentStatus">Payment Status</label>
+                  <select
+                    id="paymentStatus"
+                    name="paymentStatus"
+                    className="form-select form-select-sm"
+                    value={invoice.paymentStatus || "unpaid"}
+                    onChange={handleUserInput}
+                  >
+                    <option value="unpaid">Unpaid</option>
+                    <option value="partial">Partial</option>
+                    <option value="paid">Paid</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -890,6 +981,16 @@ const handleRemoveItem = (idx) => {
                     />
                   </div>
                 </div>
+                <div className="row mb-2">
+                  <label className="col-sm-3 col-form-label">Status</label>
+                  <div className="col-sm-9 d-flex align-items-center">
+                    {{
+                      paid: <span className="badge bg-success fs-6">Paid</span>,
+                      partial: <span className="badge bg-warning text-dark fs-6">Partial</span>,
+                      unpaid: <span className="badge bg-danger fs-6">Unpaid</span>,
+                    }[invoice.paymentStatus || "unpaid"]}
+                  </div>
+                </div>
               </div>
               <div className="col-lg-7 d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none">
                 <div className="form-group mb-3">
@@ -948,27 +1049,67 @@ const handleRemoveItem = (idx) => {
                 type="button"
                 className="btn btn-outline-primary"
                 title="Download"
+                disabled={pdfLoading}
                 onClick={() => downloadInvoice(invoice)}
               >
-                <IconDownload />
+                {pdfLoading ? <span className="spinner-border spinner-border-sm" /> : <IconDownload />}
               </button>
               <button
                 type="button"
                 className="btn btn-outline-primary"
                 title="Open PDF File"
+                disabled={pdfLoading}
                 onClick={() => openInvoice(invoice)}
               >
-                <IconFilePdf />
+                {pdfLoading ? <span className="spinner-border spinner-border-sm" /> : <IconFilePdf />}
               </button>
               <button
                 type="button"
                 className="btn btn-outline-primary"
                 title="Print"
+                disabled={pdfLoading}
                 onClick={() => printInvoice(invoice)}
               >
-                <IconPrinter />
+                {pdfLoading ? <span className="spinner-border spinner-border-sm" /> : <IconPrinter />}
               </button>
             </div>
+          </div>
+          <div className="mb-3">
+            <h6>Templates</h6>
+            <div className="input-group input-group-sm mb-1">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Template name..."
+                value={templateName}
+                onChange={(e) => setTemplateName(e.target.value)}
+              />
+              <button className="btn btn-outline-secondary btn-sm" onClick={saveAsTemplate}>
+                Save
+              </button>
+            </div>
+            {templates.length > 0 && (
+              <div className="list-group list-group-flush mb-2">
+                {templates.map((tpl) => (
+                  <div key={tpl.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-1 px-2">
+                    <span
+                      style={{ cursor: "pointer", fontSize: "0.8rem" }}
+                      onClick={() => loadTemplate(tpl.id)}
+                      title="Click to load"
+                    >
+                      {tpl.name}
+                    </span>
+                    <button
+                      className="btn btn-danger btn-sm p-0 px-1"
+                      onClick={() => deleteTemplate(tpl.id)}
+                    >
+                      &times;
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <hr />
           </div>
           <div className="mb-3">
             <h6>

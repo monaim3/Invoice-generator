@@ -1,17 +1,17 @@
 /* Container */
 .invoice-list-container {
   padding: 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf3 100%);
+  background: #F7F8F0;
   min-height: 100vh;
 }
 
 /* Header Section */
 .invoice-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%);
   border-radius: 16px;
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 30px rgba(41, 99, 116, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -94,7 +94,7 @@
 
 /* AG Grid Customization */
 .invoice-grid .ag-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -124,18 +124,18 @@
 
 /* Floating Filter Styling */
 .invoice-grid .ag-floating-filter {
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(41, 99, 116, 0.05);
 }
 
 .invoice-grid .ag-floating-filter-input {
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(41, 99, 116, 0.2);
   border-radius: 6px;
 }
 
 .invoice-grid .ag-floating-filter-input:focus {
-  border-color: #667eea;
+  border-color: #296374;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(168, 212, 220, 0.35);
 }
 
 /* Row Styling */
@@ -145,14 +145,14 @@
 }
 
 .invoice-grid .ag-row:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(41, 99, 116, 0.05) 0%, rgba(98, 159, 173, 0.05) 100%);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 2px 8px rgba(41, 99, 116, 0.1);
 }
 
 .invoice-grid .ag-row-selected {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%) !important;
-  border-left: 3px solid #667eea;
+  background: linear-gradient(135deg, rgba(41, 99, 116, 0.1) 0%, rgba(98, 159, 173, 0.1) 100%) !important;
+  border-left: 3px solid #296374;
 }
 
 /* Cell Styling */
@@ -181,7 +181,7 @@
 
 .ag-theme-alpine .ag-filter-toolpanel-header,
 .ag-theme-alpine-dark .ag-filter-toolpanel-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%);
   color: #ffffff;
 }
 
@@ -195,11 +195,11 @@
 }
 
 .ag-theme-alpine-dark .ag-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%) !important;
 }
 
 .ag-theme-alpine-dark .ag-row:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%) !important;
+  background: linear-gradient(135deg, rgba(41, 99, 116, 0.15) 0%, rgba(98, 159, 173, 0.15) 100%) !important;
 }
 
 /* Scrollbar Styling */
@@ -214,12 +214,12 @@
 }
 
 .invoice-grid::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%);
   border-radius: 4px;
 }
 
 .invoice-grid::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+  background: linear-gradient(135deg, #1e4d5c 0%, #4d8090 100%);
 }
 .ag-wrapper.ag-input-wrapper.ag-text-field-input-wrapper {
     color: black !important;

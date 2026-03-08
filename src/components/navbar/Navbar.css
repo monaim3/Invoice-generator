@@ -1,11 +1,11 @@
 /* Enhanced Navbar Styles with Gradient Theme */
 
 .enhanced-navbar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%) !important;
   backdrop-filter: blur(10px);
   border: none !important;
   padding: 0.75rem 0;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(41, 99, 116, 0.3) !important;
 }
 
 .enhanced-navbar .navbar-brand {
@@ -133,13 +133,13 @@
 }
 
 .theme-dropdown-menu .dropdown-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%);
   color: #ffffff;
   transform: translateX(4px);
 }
 
 .theme-dropdown-menu .dropdown-item.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #296374 0%, #629FAD 100%);
   color: #ffffff;
   font-weight: 600;
 }
